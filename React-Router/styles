@@ -1,0 +1,46 @@
+// styling ways
+
+// we use the styled-components library to style the components
+// npm install styled-components
+
+// example :
+import styled from "styled-components";
+
+const Button = styled.button`
+  background: Bisque;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid Chocolate;
+  border-radius: 3px;
+`;
+
+const Input = styled.input`
+  margin: 0.25em;
+`;
+
+const App = () => {
+  return (
+    <div>
+      <h1>Styled components</h1>
+      <Button>Click me!</Button>
+      <Input />
+    </div>
+  );
+};
+
+/// we useing an external css file to style the components
+
+// example :
+
+// we use libaray like
+
+// Material-UI
+// Bootstrap
+// Charkha-UI
+// Tailwind CSS
+// Ant Design
+// Semantic UI
+// React-Bootstrap
+// React-Toolbox
+// Shadnui

@@ -1,0 +1,198 @@
+// hooks
+
+useState
+useEffect
+useImperativeHandle
+
+///////////////////////////// Redux-state management hooks //////////////////////////////////////////////////////////////////////////////
+useReducer
+useContext
+
+useSelector
+useDispatch
+
+Rules :
+Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function.
+
+You can only call Hooks while React is rendering a function component:
+
+Call them at the top level in the body of a function component.
+Call them at the top level in the body of a custom Hook.
+
+
+
+
+/////////// Custom Hook /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-- Building your own Hooks lets you extract component logic into reusable functions
+
+
+example : 
+
+ import { useState } from 'react'
+const App = () => {
+  const [counter, setCounter] = useState(0)
+
+  return (
+    <div>
+      <div>{counter}</div>
+      <button onClick={() => setCounter(counter + 1)}>
+        plus
+      </button>
+      <button onClick={() => setCounter(counter - 1)}>
+        minus
+      </button>
+      <button onClick={() => setCounter(0)}>
+        zero
+      </button>
+    </div>
+  )
+}
+
+in above example we use the usestate to 
+
+//////////////////////////////  making an custom hook ///////////////////////////////////////////////////////////////////////////////
+
+const useCounter = () => {
+  const [value, setValue] = useState(0)
+
+  const increase = () => {
+    setValue(value + 1)
+  }
+
+  const decrease = () => {
+    setValue(value - 1)
+  }
+
+  const zero = () => {
+    setValue(0)
+  }
+
+  return {
+    value,
+    increase,
+    decrease,
+    zero
+  }
+}
+
+////////////////////  use the custom hook in react component /////////////////////////////////////////////////////////////////////
+const App = () => {
+  const counter = useCounter()
+
+  return (
+    <div>
+      <div>{counter.value}</div>
+      <button onClick={counter.increase}>
+        plus
+      </button>
+      <button onClick={counter.decrease}>
+        minus
+      </button>
+      <button onClick={counter.zero}>
+        zero
+      </button>
+    </div>
+  )
+}
+
+const App = () => {
+  const left = useCounter()
+  const right = useCounter()
+
+  return (
+    <div>
+      {left.value}
+      <button onClick={left.increase}>
+        left
+      </button>
+      <button onClick={right.increase}>
+        right
+      </button>
+      {right.value}
+    </div>
+  )
+}
+
+
+//////////// one example for the custom hook 
+
+const App = () => {
+  const [name, setName] = useState('')
+  const [born, setBorn] = useState('')
+  const [height, setHeight] = useState('')
+
+  return (
+    <div>
+      <form>
+        name:
+        <input
+          type='text'
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
+        <br/>
+        birthdate:
+        <input
+          type='date'
+          value={born}
+          onChange={(event) => setBorn(event.target.value)}
+        />
+        <br />
+        height:
+        <input
+          type='number'
+          value={height}
+          onChange={(event) => setHeight(event.target.value)}
+        />
+      </form>
+      <div>
+        {name} {born} {height}
+      </div>
+    </div>
+  )
+}
+
+
+
+////////////////  making an custom hook /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const useField = (type) => {
+  const [value, setValue] = useState('')
+
+  const onChange = (event) => {
+    setValue(event.target.value)
+  }
+
+  return {
+    type,
+    value,
+    onChange
+  }
+}
+
+
+//// use the above custom hook ' useField ' on below React Component ///////////////////////////////////////////////////////////////////
+const App = () => {
+  const name = useField('text')
+  // ...
+
+  return (
+    <div>
+      <form>
+        <input
+          type={name.type}
+          value={name.value}
+          onChange={name.onChange}
+        />
+        // ...
+      </form>
+    </div>
+  )
+}
+
+
+
+
+
+

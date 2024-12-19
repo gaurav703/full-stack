@@ -1,0 +1,2 @@
+
+Both Vite and Create React App use bundlers to do the actual work. We will now familiarize ourselves with the bundler called Webpack used by Create React App
