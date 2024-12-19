@@ -1,0 +1,3 @@
+/// GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data.
+
+/// we use apollo server to run the graphql server 
